@@ -1,0 +1,25 @@
+public class Solution {
+    public ListNode AddTwoNumbers(ListNode l1, ListNode l2) {
+        int num1=0;int num2=0;int num3=0;int j=0;
+		ListNode ls=null;
+		for (int i=l1.length-1;i<0;i--)
+		{
+			num1+=l1[i]*Math.pow(10,i);
+		}
+		for (int i=l2.length-1;i<0;i--)
+		{
+			num2+=l2[i]*Math.pow(10,i);
+		}
+		num3=num1+num2;
+        
+		while(num3>0)
+		{
+			ls[j]=(num3)%10
+			j++
+			num3/=10
+			
+		}
+		
+		return ls;
+    }
+}

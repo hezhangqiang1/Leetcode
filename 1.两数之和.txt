@@ -1,0 +1,35 @@
+public class Solution {
+    public int[] TwoSum(int[] nums, int target) {
+          int[] newIntArr = null;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int j = 0; j < nums.Length; j++)
+                {
+                    if ((i < j) && nums[i] + nums[j] == target)
+                    {
+                        newIntArr = new int[] { i, j };
+                    }
+                }
+            }
+            return newIntArr;
+    }
+}
+
+总结：这道题的更优解是用散列表把需要的值先存起来
+
+网站优解：
+public class Solution {
+    public int[] TwoSum(int[] nums, int target) {
+       Dictionary<int, int> dic = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                int res = target - nums[i];
+                if (dic.ContainsKey(res))
+                {
+                    return new int[] { i, dic[res] };
+                }
+                dic[nums[i]] = i;
+            }
+            return new int[] { 0, 0 };
+    }
+}
