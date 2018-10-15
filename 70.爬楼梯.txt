@@ -1,0 +1,36 @@
+public class Solution {
+    public int ClimbStairs(int n) {
+        if (n <= 1) {
+        return 1;
+    }
+    
+    int res = 0;
+    int n1 = 1;
+    int n2 = 1;
+    for (int i = 2; i <= n; ++i) {
+        res = n2 + n1;
+        n1 = n2;
+        n2 = res;
+    }
+    return res;
+
+    }
+}
+
+执行更快的案例：
+public class Solution {
+    public int ClimbStairs(int n) {
+        if(n<=0)return 0;
+        if(n<3) return n;
+        int m1 = 2;		//最后一步走的是1步的走法
+        int m2 = 1;		//最后一步走的是2步的走法
+        int total = 0;	//每个台阶的所有走法 = m1 + m2
+        for (int stair = 3; stair <= n; stair++)
+        {
+            total = m1 + m2;
+            m2 = m1;
+            m1 = total;
+        }
+        return total;
+    }
+}

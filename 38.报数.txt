@@ -1,0 +1,98 @@
+
+public class Solution {
+    public string result;
+    public string CountAndSay(int n) {
+           if(n == 1)
+           return "1";
+        string result = "1";
+        for(int i = 1; i < n; ++i)
+        {
+            result = convert(result);
+        }
+        return result;
+    }
+   public string convert(string str) 
+   {
+        int len = str.Length;
+        if(len == 1) return "1" + str;//递归终止条件
+        
+        int count = 1;
+        for(int i = 1; i < len-1; ++i) {
+            if(str[i-1] == str[i]) count++;
+            else {
+                result = result + count.ToString() + str[i-1];
+                count = 1;
+           }
+            if(i == len - 1) 
+                result = result + count.ToString() + str[i];
+        }
+        return result;
+    }
+}
+
+以上解法超时：
+网上解法：
+public class Solution {
+    public string CountAndSay(int n) {
+        if(n==1)
+        {
+            return "1";
+        }
+        StringBuilder curr=new StringBuilder("1");
+        StringBuilder prev;
+        int count;
+        char say;
+        for (int i=1;i<n;i++){
+            prev=curr;
+            curr=new StringBuilder();       
+            count=1;
+            say=prev[0];
+
+            for (int j=1;j<prev.Length;j++){
+                if (prev[j]!=say){
+                    curr.Append(count).Append(say);
+                    count=1;
+                    say=prev[j];
+                }
+                else count++;
+            }
+            curr.Append(count).Append(say);
+        }                   
+        return curr.ToString();
+    }
+}
+对api不熟悉：
+ Append 方法可用来将文本或对象的字符串表示形式添加到由当前 StringBuilder 对象表示的字符串的结尾处。
+ StringBuilder.Append 将信息追加到当前 StringBuilder 的结尾。 
+StringBuilder.AppendFormat 用带格式文本替换字符串中传递的格式说明符。 
+StringBuilder.Insert 将字符串或对象插入到当前 StringBuilder 对象的指定索引处。 
+StringBuilder.Remove 从当前 StringBuilder 对象中移除指定数量的字符。
+
+时间最少解法：
+public class Solution {
+     public string CountAndSay(int n)
+        {
+            string result = "1";
+            while (n-- > 1)
+            {
+                StringBuilder newResult = new StringBuilder(); ;
+                //countAndSay
+                for (int i = 0; i < result.Length; i++)
+                {
+                    int count = 0;
+                    char c = result[i];
+
+                    while (i < result.Length && result[i] == c)
+                    {
+                        i++;
+                        count++;
+                    }
+                    i--;
+                    newResult.Append(count.ToString() + c.ToString());
+                }
+                result = newResult.ToString();
+            }
+
+            return result;
+        }
+} 

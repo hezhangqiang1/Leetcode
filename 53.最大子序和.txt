@@ -1,0 +1,50 @@
+public class Solution {
+	
+    public int MaxSubArray(int[] nums) {
+     
+        int sum;int max=0;
+        for (int i = 0; i < nums.Length; i++) {
+            sum = 0;
+            for (int j = i; j < nums.Length; j++) {
+                sum += nums[j];
+                if (sum > max)
+                    max = sum;
+            }
+        }
+        return max;
+    
+    }
+}
+这种暴力解法时间超时 通不过
+
+网上的动态规划算法，还没有完全理解，先贴在这里。
+class Solution {
+    public int maxSubArray(int[] nums) {// 动态规划法
+        int sum=nums[0];
+        int n=nums[0];
+        for(int i=1;i<nums.Length;i++) {
+            if(n>0)n+=nums[i];
+            else n=nums[i];
+            if(sum<n)sum=n;
+        }
+        return sum;
+    }
+}
+
+执行最快的解法
+public class Solution {
+    public int MaxSubArray(int[] nums) {
+        if(nums==null||nums.Length<1)
+        {
+            throw new Exception("Invalid parameter");
+        }
+        double globalMax=double.MinValue;
+        double localMax=0;
+        for(int i=0;i<nums.Length;i++)
+        {
+            localMax=Math.Max(nums[i],localMax+nums[i]);
+            globalMax=Math.Max(globalMax,localMax);
+        }
+        return (int)globalMax;
+    }
+}
