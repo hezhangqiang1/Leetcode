@@ -1,0 +1,9 @@
+public class Solution {
+    public int LengthOfLastWord(string s) {
+        s = s.Trim();
+        int lastIndex = s.LastIndexOf(' ') + 1;
+        return s.Length - lastIndex;        
+    }
+}
+参考博客
+思路：利用string.Trim()去掉字符串最左和最右的空格，然后从后往前遍历，从第一个字符开始到第一个空格结束。
